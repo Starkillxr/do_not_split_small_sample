@@ -1,3 +1,4 @@
+install.packages("tidyverse")
 library(tidyverse)
 
 # Fig. 2: CV-AUC and test error % according to the No. of features ----------
