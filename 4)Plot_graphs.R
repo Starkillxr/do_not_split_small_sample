@@ -86,25 +86,25 @@ ggplot(df_plot %>% filter((Task=="GvM_full" | Task=="MEN_full")),
           legend.position = "NONE")
 
 ggplot(df_plot %>% filter((Task=="GvM_half" | Task=="MEN_half")),
-       aes(x=Num_features, y=Test_mean, group=Task)) +
+    aes(x=Num_features, y=Test_mean, group=Task)) +
     geom_line(data=filter(df, Task=="GvM_half"), 
-              aes(x=Num_features, y=Test_AUC, group=Random_state), 
-              size=1, alpha=0.2, color='darkorange1') +
+            aes(x=Num_features, y=Test_AUC, group=Random_state), 
+            size=1, alpha=0.2, color='darkorange1') +
     geom_line(data=filter(df, Task=="MEN_half"), 
-              aes(x=Num_features, y=Test_AUC, group=Random_state), 
-              size=1, alpha=0.2, color="dodgerblue") +
+            aes(x=Num_features, y=Test_AUC, group=Random_state), 
+            size=1, alpha=0.2, color="dodgerblue") +
     geom_line(size=1.5) +
     geom_errorbar(aes(ymin=Test_mean - 1.96*Test_SD/sqrt(1000), 
-                      ymax=Test_mean + 1.96*Test_SD/sqrt(1000)), 
-                  lty=1, size=0.3, width=0.5) +
+                    ymax=Test_mean + 1.96*Test_SD/sqrt(1000)), 
+                lty=1, size=0.3, width=0.5) +
     labs(x="Number of features", y="AUC in the test set") +
     ylim(c(0.35, 1)) +
     theme_bw() +
     theme(axis.title.x = element_text(size=40), 
-          axis.text.x = element_text(size=30), 
-          axis.title.y = element_text(size=40), 
-          axis.text.y = element_text(size=30),
-          legend.position = "NONE")
+        axis.text.x = element_text(size=30), 
+        axis.title.y = element_text(size=40), 
+        axis.text.y = element_text(size=30),
+        legend.position = "NONE")
 
 # 3) AUC difference averaged over 1,000 trials according to the number of features
 ggplot(df_plot, aes(x=Num_features, y=diff_mean)) +
