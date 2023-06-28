@@ -6,8 +6,7 @@ df <- bind_rows(mutate(read_csv("GvM_full_search.csv"), Task="GvM_full"),
                 mutate(read_csv("GvM_under_search.csv"), Task="GvM_under"),
                 mutate(read_csv("MEN_full_search.csv"), Task="MEN_full"),
                 mutate(read_csv("MEN_under_search.csv"), Task="MEN_under")) %>% 
-    mutate(test_error = CV_AUC - Test_AUC) %>% 
-    select(-X1) 
+    mutate(test_error = CV_AUC - Test_AUC) 
 
 T1 <- df %>% 
     group_by(Task) %>% 

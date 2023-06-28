@@ -8,8 +8,7 @@ df <- bind_rows(mutate(read_csv("GvM_full_by_nfeat.csv"), Task="GvM_full"),
                 mutate(read_csv("GvM_under_by_nfeat.csv"), Task="GvM_half"),
                 mutate(read_csv("MEN_full_by_nfeat.csv"), Task="MEN_full"), 
                 mutate(read_csv("MEN_under_by_nfeat.csv"), Task="MEN_half")) %>% 
-    mutate(test_error = abs(CV_AUC - Test_AUC)/CV_AUC*100) %>% 
-    select(-X1)
+    mutate(test_error = abs(CV_AUC - Test_AUC)/CV_AUC*100) 
 
 # create a dataframe for plotting
 df_plot <- df %>% 
@@ -166,8 +165,7 @@ df <- bind_rows(mutate(read_csv("GvM_full_search.csv"), Task="GBM vs Met"),
                 mutate(read_csv("GvM_under_search.csv"), Task="GBM vs Met, undersampled"),
                 mutate(read_csv("MEN_full_search.csv"), Task="Meningioma"),
                 mutate(read_csv("MEN_under_search.csv"), Task="Meningioma, undersampled")) %>% 
-    mutate(test_error = CV_AUC - Test_AUC) %>% 
-    select(-X1) 
+    mutate(test_error = CV_AUC - Test_AUC)
 
 # plotting
 ggplot(data=df, aes(x=CV_AUC, y=test_error, color=Task)) +
